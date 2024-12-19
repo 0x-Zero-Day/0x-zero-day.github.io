@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./photos/admin-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/scratch-practice.css">
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Scratch Challenges">
+  <meta property="og:description" content="Explore fun Scratch challenges and learn with interactive examples!">
+  <meta property="og:image" content="https://frankishtien.github.io/Scratch-Challenges/admin-logo.png">
+  <meta property="og:url" content="https://frankishtien.github.io/Scratch-Challenges/">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="https://frankishtien.github.io/Scratch-Challenges/admin-logo.png" type="image/png">
+
+
+
+    <title>scratch</title>
+</head>
+<body>
+   <!-- ////////navbar/////// -->
+   <nav class="navbar">
+    <div class="logo">
+        <a href="#" onclick="window.location.href='../html/index.html'">Zero <span class="rotate-text">Day</span></a>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-button" aria-label="Search">
+            <i class='bx bx-search'></i>
+          </button>              
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <div class="menu" id="menu">
+        <a href="#" onclick="window.location.href='../html/index.html'">Home</a>
+        <a href="#about" onclick="window.location.href='../html/index.html#about'">About</a>
+        <a href="#" onclick="window.location.href='../html/courses.html'">Courses</a>
+        <!-- Dropdown for 'Practices' -->
+        <div class="dropdown">
+            <button class="dropbtn">Practices 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#" onclick="window.location.href='./scratch-practice.html'">Scratch</a>
+                <a href="#" onclick="window.location.href='./web-practice.html'">Web</a>
+                <a href="#" onclick="window.location.href='./coming-soon.html'">C++</a>
+                <a href="#" onclick="window.location.href='./coming-soon.html'">Python</a>
+                <a href="#" onclick="window.location.href='./security-practice.html'">Security</a>
+            </div>
+        </div> 
+        <a href="#contact" onclick="window.location.href='../html/index.html#contact'">Contact</a>
+    </div>
+</nav>
+
+
+<!-- ////////navbar/////// -->
+
+
+ <!-- ////////////////// challanges //////////////? -->
+    <!-- ////////////////// challanges //////////////? -->
+
+   
+    <section class="challenges">
+      <header class="scratch-header">
+          <div class="header-bg"></div>
+          <h1>تحديات سكراتش</h1>
+          <p>!!! قم بالتطبيق على ما تعلمته من فديوهاتنا فى سكراتش لتثبيت فهمك جيدا  ماذا تنتظر ابدأ الان</p>
+        </header>
+        
+  
+      
+      <div class="challenge">
+        <h3 onclick="toggleChallenge('challenge4')">تطبيق على الفديو #2<div class="blue-badge">عادى</div> </h3>
+        <div id="challenge4" class="challenge-content">
+            <p>قم بتصميم واضافه هذه الشخصيات مع تصميم نفس الخلفيه</p>
+            <p> تعلم الأول من <a href="https://youtu.be/CR_QjwbD5Zc?si=75T0CLuqzliTWCly" target="_blank" rel="noopener">هنا</a></p>
+            <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+            <iframe src="https://scratch.mit.edu/projects/1105810047/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+            <div class="input-wrapper">
+                <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="challenge">
+      <h3 onclick="toggleChallenge('challenge5')">تطبيق على الفديوهات #3,4,5<div class="blue-badge">عادى</div> </h3>
+      <div id="challenge5" class="challenge-content">
+          <p>اجعل القط يتحرك كما بالمثال الاتى مع وضع نفس الصوت للشخصيه</p>
+          <p> الفديو #3 من <a href="https://youtu.be/bCgi22GY9uI?si=nrYReoOmZYwIQwm-" target="_blank" rel="noopener">هنا</a></p>
+          <p> الفديو #4 من <a href="https://youtu.be/zQlRjIOwANU?si=Z9Pm1kpRR6DRC-hT" target="_blank" rel="noopener">هنا</a></p>
+          <p> الفديو #5 من <a href="https://youtu.be/mAyJ0z7agl4?si=QjXeJ7TPX6mqoHH8" target="_blank" rel="noopener">هنا</a></p>
+          <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+          <iframe src="https://scratch.mit.edu/projects/1105810321/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+          <div class="input-wrapper">
+              <input type="text" placeholder="لا حاجة للإجابة" disabled>
+              <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="challenge">
+    <h3 onclick="toggleChallenge('challenge6')">تطبيق على الفديو #6<div class="blue-badge">عادى</div> </h3>
+    <div id="challenge6" class="challenge-content">
+        <p>قم بعمل نفس هذا المثال</p>
+        <p> تعلم الأول من <a href="https://youtu.be/GFqX_qp27bw?si=FRn3inRcuzV0hl-s" target="_blank" rel="noopener">هنا</a></p>
+        <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+        <iframe src="https://scratch.mit.edu/projects/1105810566/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+        <div class="input-wrapper">
+            <input type="text" placeholder="لا حاجة للإجابة" disabled>
+            <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="challenge">
+  <h3 onclick="toggleChallenge('challenge7')">تطبيق على الفديو #7<div class="blue-badge">عادى</div> </h3>
+  <div id="challenge7" class="challenge-content">
+      <p>قم بعمل نفس هذا المثال</p>
+      <p> تعلم الأول من <a href="https://youtu.be/bdtsNEGcfcc?si=8tADinF60r1DWDHo" target="_blank" rel="noopener">هنا</a></p>
+      <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+      <iframe src="https://scratch.mit.edu/projects/1105810687/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+      <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+      <div class="input-wrapper">
+          <input type="text" placeholder="لا حاجة للإجابة" disabled>
+          <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="challenge">
+<h3 onclick="toggleChallenge('challenge8')">تطبيق على الفديوهات #8,9,10,11<div class="blue-badge">عادى</div> </h3>
+<div id="challenge8" class="challenge-content">
+    <p>قم بعمل نفس هذا المثال</p>
+    <p> الفديو #8 من <a href="https://youtu.be/5DIW7K838Ek?si=VtnDa-E5QqVA6fUj" target="_blank" rel="noopener">هنا</a></p>
+    <p> الفديو #9 من <a href="https://youtu.be/chDV57OmxvY?si=a8IPOjmwBRBovBjI" target="_blank" rel="noopener">هنا</a></p>
+    <p> الفديو #10 من <a href="https://youtu.be/eVy55kWoR0s?si=WEPc8cVLhrlRReUE" target="_blank" rel="noopener">هنا</a></p>
+    <p> الفديو #11 من <a href="https://youtu.be/u1HB1OdoARU?si=Qe6GZl7kI7aowMOF" target="_blank" rel="noopener">هنا</a></p>
+    <p>  الحل من <a href="https://youtu.be/CmRfaKty9-4?si=9LTtAtg2aH4WRIiT" target="_blank" rel="noopener">هنا</a></p>
+    <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+    <iframe src="https://scratch.mit.edu/projects/1105810887/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+    <div class="input-wrapper">
+        <input type="text" placeholder="لا حاجة للإجابة" disabled>
+        <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+    </div>
+</div>
+</div>
+
+<div class="challenge">
+<h3 onclick="toggleChallenge('challenge9')">تطبيق على الفديو #13<div class="blue-badge">عادى</div> </h3>
+<div id="challenge9" class="challenge-content">
+    <p>قم بعمل نفس هذا المثال</p>
+    <p> تعلم الأول من <a href="https://youtu.be/GJmVH0_st-8?si=fUcn1mGXQmzbVHCX" target="_blank" rel="noopener">هنا</a></p>
+    <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+    <iframe src="https://scratch.mit.edu/projects/1058032793/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+    <div class="input-wrapper">
+        <input type="text" placeholder="لا حاجة للإجابة" disabled>
+        <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+    </div>
+</div>
+</div>
+
+<div class="challenge">
+<h3 onclick="toggleChallenge('challenge10')">تطبيق على الفديوهات #14,15<div class="blue-badge">عادى</div> </h3>
+<div id="challenge10" class="challenge-content">
+    <p>قم بعمل لعبه بسيطه وضع لها صوره مصغره وقمم بارسالها على سيرفر الديسكورد </p>
+    <p> سيرفر الديسكورد من    <a href=" https://discord.com/invite/nvp7WxFSxb  " target="_blank" rel="noopener">هنا<i class="bx bxl-discord-alt"></i></a></p>
+    <p> الفديو #14 من <a href="https://youtu.be/m37tKMgv2q0?si=5BoW2mvT0J7KkbtY" target="_blank" rel="noopener">هنا</a></p>
+    <p> الفديو #15 من <a href="https://youtu.be/4pLv4KzFojg?si=EigJM5S5EY3fco1k" target="_blank" rel="noopener">هنا</a></p>
+    <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+    <iframe src="https://scratch.mit.edu/projects/1105811864/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+    <div class="input-wrapper">
+        <input type="text" placeholder="لا حاجة للإجابة" disabled>
+        <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+    </div>
+</div>
+</div>
+
+
+
+<div class="challenge">
+<h3 onclick="toggleChallenge('challenge12')"> "level devil" اختبر نفسك : تحدى من لعبه <div class="green-badge">سهل</div> </h3>
+<div id="challenge12" class="challenge-content">
+    <p>حاول صنع لعبه مثل هذه اللعبه</p>
+    <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+    <iframe src="https://scratch.mit.edu/projects/1105812314/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+    <div class="input-wrapper">
+        <input type="text" placeholder="لا حاجة للإجابة" disabled>
+        <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+    </div>
+</div>
+</div>
+
+      <div class="challenge">
+          <h3 onclick="toggleChallenge('challenge1')">(تطبيق على الفديو #12) التحدى الأول : لعبه التقاط التفاح<div class="green-badge">سهل</div> </h3>
+          <div id="challenge1" class="challenge-content">
+              <p> حاول صنع لعبه مثل هذه اللعبه</p>
+              <p>اذا عجزت عن حلها الحل من <a href="https://youtu.be/RiNK23sAVxI" target="_blank" rel="noopener">هنا</a></p>
+              <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+              <iframe src="https://scratch.mit.edu/projects/1058019684/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+              <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+              <div class="input-wrapper">
+                  <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                  <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="challenge">
+        <h3 onclick="toggleChallenge('challenge11')">التحدى الثانى <div class="green-badge">سهل</div> </h3>
+        <div id="challenge11" class="challenge-content">
+            <p>حاول صنع لعبه مثل هذه اللعبه</p>
+            <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+            <iframe src="https://scratch.mit.edu/projects/1105812733/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+            <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+            <div class="input-wrapper">
+                <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge">
+      <h3 onclick="toggleChallenge('challenge13')">التحدى الثالث<div class="green-badge">سهل</div> </h3>
+      <div id="challenge13" class="challenge-content">
+          <p>حاول صنع لعبه مثل هذه اللعبه</p>
+          <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+          <iframe src="https://scratch.mit.edu/projects/1107960941/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+          <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+          <div class="input-wrapper">
+              <input type="text" placeholder="لا حاجة للإجابة" disabled>
+              <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+          </div>
+      </div>
+  </div>
+  
+      <div class="challenge">
+          <h3 onclick="toggleChallenge('challenge2')">التحدى الرابع<div class="yellow-badge">متوسط</div> </h3>
+          <div id="challenge2" class="challenge-content">
+              <p>حاول صنع لعبه مثل هذه اللعبه</p>
+              <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+              <iframe src="https://scratch.mit.edu/projects/1107961889/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+              <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+              <div class="input-wrapper">
+                  <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                  <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="challenge">
+        <h3 onclick="toggleChallenge('challenge16')">التحدى الخامس <div class="yellow-badge">متوسط</div> </h3>
+        <div id="challenge16" class="challenge-content">
+          <p>حاول صنع لعبه مثل هذه اللعبه</p>
+          <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>  
+          <iframe src="https://scratch.mit.edu/projects/731343109/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+          <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>  
+          <div class="input-wrapper">
+                <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+            </div>
+        </div>
+    </div>
+      
+  
+      <div class="challenge">
+          <h3 onclick="toggleChallenge('challenge3')">التحدى السادس<div class="red-badge">صعب</div></h3>
+          <div id="challenge3" class="challenge-content">
+              <p>حاول صنع لعبه مثل هذه اللعبه</p>
+              <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+              <iframe src="https://scratch.mit.edu/projects/1107962611/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+              <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+              <div class="input-wrapper">
+                  <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                  <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+              </div>
+          </div>
+      </div>
+  
+
+      <div class="challenge">
+        <h3 onclick="toggleChallenge('challenge14')">التحدى السابع<div class="red-badge">صعب</div></h3>
+        <div id="challenge14" class="challenge-content">
+          <p>حاول صنع لعبه مثل هذه اللعبه</p>
+          <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>  
+          <iframe src="https://scratch.mit.edu/projects/1107963209/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+          <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>  
+          <div class="input-wrapper">
+                <input type="text" placeholder="لا حاجة للإجابة" disabled>
+                <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="challenge">
+      <h3 onclick="toggleChallenge('challenge15')">التحدى الثامن<div class="red-badge">صعب</div></h3>
+      <div id="challenge15" class="challenge-content">
+          <p>حاول صنع لعبه مثل هذه اللعبه</p>
+          <p class="green-note"><i class='bx bx-error-alt'></i>قم بالضغط على العلم الأخضر للبدأ</p>
+          <iframe src="https://scratch.mit.edu/projects/843162693/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
+          <p class="red-note"><i class='bx bx-error-alt'></i> لا تنس الضغط على الزر الاحمر 🔴 قبل الخروج </p>
+          <div class="input-wrapper">
+              <input type="text" placeholder="لا حاجة للإجابة" disabled>
+              <button class="submit-button" onclick="showToast()">Mark as Completed</button>
+          </div>
+      </div>
+  </div>
+
+      
+      <!-- Toast container -->
+      <div id="toast" class="toast"> 🥳🚀   تم بنجاح</div>
+    
+  </section>
+
+  
+
+  <!-- ////////////////// challanges //////////////? -->
+  <!-- ////////////////// challanges //////////////? -->
+
+
+
+
+  <script>
+    // JavaScript to show alert on click
+    document.getElementById("logo").addEventListener("click", function() {
+        alert(" مازلنا نعمل على الموقع الأصلى 😊");
+    });
+</script>
+
+
+
+
+
+
+
+
+
+<!-- ////////////////////////footer//////////////////////////// -->
+<!-- ////////////////////////footer//////////////////////////// -->
+
+
+<footer class="footer">
+<div class="footer-container">
+  <!-- Logo and Tagline -->
+  <div class="footer-logo">
+    <img src="../photos/admin.png" alt="Logo" class="logo-img" />
+    <p>Zero Day</p>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="footer-links">
+    <h3>Quick Links</h3>
+    <ul>
+      <li><a href="#" onclick="alert('مازلنا نعمل على الموقع الأصلى 😊')">Home</a></li>
+      <li><a href="#" onclick="alert('مازلنا نعمل على الموقع الأصلى 😊')">About</a></li>
+      <li><a href="#" onclick="alert('مازلنا نعمل على الموقع الأصلى 😊')">Courses</a></li>
+      <li><a href="#" onclick="alert('مازلنا نعمل على الموقع الأصلى 😊')">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Social Media Links -->
+  <div class="footer-social">
+    <h3>Follow Us</h3>
+    <div class="social-icons">
+      <a href="https://www.tiktok.com/@tech_hat"><i class="bx bxl-tiktok"></i></a>
+      <a href="https://www.whatsapp.com/channel/0029Vad8RSv84OmC2L6ngc2X"><i class="bx bxl-whatsapp"></i></a>
+      <a href="https://www.youtube.com/@0x_DaY"><i class="bx bxl-youtube"></i></a>
+      <a href=" https://discord.com/invite/nvp7WxFSxb  "><i class="bx bxl-discord-alt"></i></a>
+    </div>
+  </div>
+
+  <!-- Achievements Section -->
+  <div class="footer-achievements">
+    <h3>Future Achievements</h3>
+    <ul class="achievements-list">
+      <li><i class="bx bx-award"></i> Winner of Best UX Design 2024</li>
+      <li><i class="bx bx-trophy"></i> Over 1M Happy Users Worldwide</li>
+      <li><i class="bx bx-star"></i> Rated 5 Stars by 99% of Our Users</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  <p>© 2024 Zero Day. All Rights Reserved.</p>
+</div>
+</footer>
+
+
+<!-- ////////////////////////footer//////////////////////////// -->
+<!-- ////////////////////////footer//////////////////////////// -->
+
+
+
+
+
+
+
+    
+     <script src="../js/scratch-practice.js"></script>
+</body>
+</html>

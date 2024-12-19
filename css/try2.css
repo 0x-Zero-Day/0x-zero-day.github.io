@@ -1,0 +1,259 @@
+/* General Reset & Basic Styles */
+body {
+    font-family: 'Roboto', sans-serif; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #f7f7f7; 
+    color: #333;
+  }
+  
+  /* Header Styling */
+  .header {
+    text-align: center;
+    background: linear-gradient(145deg, #e63622, #ff8c00); 
+    color: white;
+    padding: 40px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    border-bottom: 4px solid #ff8c00; 
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  
+  .header h1 span {
+    color: #ffd700;
+  }
+  
+ 
+  #courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 30px;
+    padding: 40px;
+    background: #f4f4f4;
+  }
+  
+  .course-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    border: 1px solid #ddd;
+    transform-origin: center;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 36px rgba(0, 0, 0, 0.12);
+    filter: brightness(1.05);
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+    transition: transform 0.3s ease;
+  }
+  
+  .course-card:hover img {
+    transform: scale(1.05); 
+  }
+  
+  .course-info {
+    padding: 20px;
+  }
+  
+  .course-info h3 {
+    margin: 15px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .price {
+    color: #e63622;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .sale {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 10px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .button {
+    margin: 0 12px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #e63622;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button:hover {
+    background: #b8281a;
+    transform: scale(1.05);
+  }
+  
+  /* No Courses Message */
+  .no-courses {
+    text-align: center;
+    margin: 30px;
+    font-size: 1.2rem;
+    color: #888;
+    font-weight: 600;
+  }
+  
+  /* Filter Bar */
+  .filter-bar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: #fff;
+    border-right: 2px solid #ddd;
+    padding: 30px 20px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-bar h2 {
+    margin-bottom: 20px;
+    color: #e63622;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid #e63622;
+    padding-bottom: 10px;
+  }
+  
+  .filter-item {
+    margin-bottom: 25px;
+  }
+  
+  .filter-item label {
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+  }
+  
+  .filter-item input {
+    margin-right: 10px;
+  }
+  
+  .filter-item:hover label {
+    color: #e63622;
+  }
+  
+  .filter-item input[type="checkbox"]:checked + label {
+    color: #e63622;
+  }
+  
+  .filter-bar button {
+    padding: 12px 20px;
+    background: #e63622;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-bar button:hover {
+    background: #b8281a;
+    transform: scale(1.05);
+  }
+  
+  /* Floating Filter Button */
+  .floating-filter {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #e63622;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .floating-filter:hover {
+    background: #b8281a;
+    transform: scale(1.1);
+  }
+  
+  .floating-filter i {
+    position: relative;
+    top: 5px;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .floating-filter {
+      display: block;
+    }
+  
+    .filter-bar {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+  
+    .filter-bar.open {
+      transform: translateX(0);
+    }
+  
+    #courses-container {
+      padding: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      
+    }
+  
+    .course-card img {
+      height: 220px;
+    }
+  
+    .filter-bar h2 {
+      font-size: 1.3rem;
+    }
+  
+    .filter-item {
+      font-size: 1rem;
+    }
+  }
+  
+

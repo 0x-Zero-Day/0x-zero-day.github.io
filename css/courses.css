@@ -1,0 +1,734 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #2a2a2a;
+  }  
+
+
+
+
+
+/* ////////////////nav bar //////////////////////// */
+/* ////////////////////navbar///////////////////// */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #333333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.532);
+    position: relative;
+    z-index: 3000;
+}
+
+.navbar .logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar .logo a:hover {
+    color: #e63622;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    padding: 8px 12px;
+    margin-right: 15px;
+    border: 1px solid #2a2a2a; /* Normal border */
+    border-radius: 20px;
+    outline: none;
+    width: 150px;
+    transition: width 0.3s ease;
+    box-shadow: none; /* Remove any shadow */
+    background-color: #3b3b3b;
+    color: #fff;
+}
+
+.search-input:focus {
+    width: 250px; /* Expands when focused */
+    box-shadow: none; /* Ensure no shadow when focused */
+}
+
+
+.search-button {
+    background-color: #4f4f4f;
+    color: rgb(207, 207, 207);
+    border: none;
+    padding: 9px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    
+}
+
+.search-button:hover {
+    background-color: #e63622;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.menu a {
+    color: rgb(205, 205, 205);
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #e63622;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+    display: none;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: rgb(142, 142, 142);
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Keep items in a row */
+        align-items: center;
+        justify-content: space-between; /* Space items out */
+    }
+
+    .search-container {
+        margin-right: 15px;
+    }
+
+    /* Logo, search input, and menu icon all next to each other */
+    .logo, .search-container, .menu-toggle {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Hide menu initially off-screen to the right */
+    .menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -300px; /* Off-screen */
+        background-color: #333;
+        width: 250px;
+        height: 100%;
+        padding: 15px;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* When menu is toggled, slide it in */
+    .menu.show {
+        transform: translateX(-250px); /* Slide in from the right */
+    }
+
+    .menu a {
+        padding: 15px;
+        text-align: left;
+        width: 100%;
+        background-color: #444;
+        border-bottom: 1px solid #555;
+        transition: background-color 0.3s;
+    }
+
+    .menu div {
+        padding: 10px;
+        text-align: left;
+        width: 100%;
+        background-color: #444;
+        border-bottom: 1px solid #555;
+        transition: background-color 0.3s;
+    }
+
+    .menu a:last-child {
+        border-bottom: none;
+    }
+
+    .menu a:hover {
+        background-color: #555;
+    }
+
+    /* Show the menu toggle button */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Adjusting search bar width on small devices */
+    .search-container {
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .search-input {
+        width: 80px;
+        transition: width 0.3s ease;
+        -webkit-transition: width 0.3s ease;
+        -moz-transition: width 0.3s ease;
+        -ms-transition: width 0.3s ease;
+        -o-transition: width 0.3s ease;
+}
+
+    .search-input:focus {
+        width: 180px;
+    }
+
+    
+}
+
+
+/* //////////////////////////////////////////////////////////////////////// */
+/* Dropdown Container Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Button Styling */
+.dropdown .dropbtn {
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: #ddd;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease;
+    font-size: 18px;
+}
+
+.dropdown .dropbtn:hover {
+    color: #e63622;
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    min-width: 160px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+/* Display Dropdown Content when Hovered or Clicked */
+.dropdown:hover .dropdown-content, .dropdown-content.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dropdown Menu Items Styling */
+.dropdown-content a {
+    color: #ddd;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #555;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dropdown Item Hover Effect */
+.dropdown-content a:hover {
+    background-color: #292929;
+    color: #e63622;
+}
+
+/* Last Item without Border */
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+/* Small Screen - Styling for the Dropdown Button */
+@media (max-width: 768px) {
+    .dropdown .dropbtn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .dropdown-content a {
+        padding: 10px 15px;
+    }
+}
+
+/* //////////////////////////////////////////////////////////////////////// */
+
+
+
+
+
+
+
+/* //////////////end of navbar//////////// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////////// courses ............////////// */
+/* //////////////////// courses ............////////// */
+
+
+.courses-section {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #2a2a2a;
+  }
+  
+  .header {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    align-content: center;
+    padding: 20px;
+    font-size: 40px;
+    z-index: 1;
+    color: #fff;
+  }
+  .header h1 span {
+    color: #e63622;
+  }
+  
+  /* Courses Container */
+  #courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #2a2a2a !important;
+    margin-left: 300px;
+  }
+  
+  .course-card {
+    background: #3e3e3e;
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .course-info {
+    padding: 15px;
+  }
+  
+  .course-info h3 {
+    margin: 10px 0;
+  }
+  
+  .price {
+    color: #e63622;
+    font-size: 1.2em;
+  }
+  
+  .sale {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 10px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #e63622;
+    color: white;
+    transition: 0.3s;
+  }
+  
+  .button:hover {
+    background: #b8281a;
+  }
+  
+  .no-courses {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px;
+    color: #999;
+    display: none;
+  }
+
+  .no-courses img{
+    width: 29%;
+  }
+  
+  
+  
+  .filter-bar.open {
+    transform: translateX(0);
+  }
+  
+  
+  
+  .content-wrapper {
+    display: flex;
+    align-items: flex-start; /* Align items at the top */
+  }
+  
+  .filter-bar {
+    flex: 0 0 250px; /* Keep filter bar at a fixed width */
+  }
+  
+  /* Always show filter bar on larger screens */
+  @media (min-width: 769px) {
+    .filter-bar {
+      transform: translateX(0);
+      position: static;
+      width: 250px;
+      box-shadow: none;
+    }
+  
+    .floating-filter {
+      display: none;
+    }
+  
+    
+  }
+  
+  
+  
+  /* Floating Filter Button */
+  .floating-filter {
+    display: none;
+    position:sticky;
+    bottom: 20px;
+    right: 20px;
+    background: #e63622;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+  
+  .floating-filter i {
+    font-size: 1.5em;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .floating-filter {
+      display: block;
+    }
+  
+    #courses-container {
+      padding: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .no-courses img{
+      width: 50%;
+    }
+
+    .header {
+      font-size: 24px; /* Smaller font size for small screens */
+      padding: 10px; /* Less padding */
+      flex-wrap: wrap; /* Allow content to wrap if needed */
+  }
+  }
+  
+  @media (max-width: 480){
+    .no-courses img{
+      width: 70%;
+    }
+
+    .header {
+      font-size: 24px; /* Smaller font size for small screens */
+      padding: 10px; /* Less padding */
+      flex-wrap: wrap; /* Allow content to wrap if needed */
+  }
+  }
+  
+  
+  
+  
+  
+  
+  /* Filter Bar */
+  .filter-bar {
+    position: fixed;
+    top: 0; /* Sticks to the top of the viewport */
+    height: calc(100vh - 20px); /* Account for some padding */
+    width: 250px;
+    background: #555555; /* Light background for better readability */
+    border-right: 0px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-y: auto; /* Allow scrolling for content within */
+    z-index: 2;
+  }
+  
+  .filter-bar h2 {
+    margin-bottom: 15px;
+    color: #e63622;
+    font-weight: bold;
+    border-bottom: 2px solid #e63622;
+    padding-bottom: 5px;
+    margin-top: 90px;
+    font-size: 25px;
+  }
+  
+  .filter-item {
+    margin-bottom: 15px;
+  }
+  
+  .filter-item label {
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    bottom: 5px;
+  }
+  
+  .filter-item input {
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+
+
+
+
+
+
+/* Hide the default checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none; /* For Safari */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style the checkbox when checked */
+input[type="checkbox"]:checked {
+  background-color: #e63622; /* Red color */
+  border-color: #e63622; /* Optional for matching border */
+}
+
+/* Add the checkmark */
+input[type="checkbox"]:checked::before {
+  content: '✔'; /* The checkmark */
+  color: white; /* Checkmark color */
+  font-size: 14px; /* Adjust size as needed */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+
+
+
+
+
+  
+  .filter-item:hover label {
+    color: #e63622;
+  }
+  
+  /* Floating Filter Button for Mobile */
+  .floating-filter {
+    display: none;
+    position: fixed; /* Fixed position for better visibility */
+    bottom: 20px;
+    right: 20px;
+    background: #e63622;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+  
+  .floating-filter i {
+    font-size: 1.5em;
+  }
+  
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .floating-filter {
+      display: block;
+    }
+  
+    .filter-bar {
+      position: fixed; /* Ensure visibility on smaller screens */
+      height: 100%; /* Full height on mobile */
+      transform: translateX(-100%); /* Hidden by default */
+      transition: transform 0.3s;
+      z-index: 4000;
+    }
+  
+    .filter-bar.open {
+      transform: translateX(0); /* Show when toggled */
+    }
+  
+    #courses-container {
+      padding: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-left: 0;
+      align-items: center;
+      justify-content: center !important;
+      
+    }
+  }
+  
+  /* Courses Container */
+  #courses-container {
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+     /* Center items horizontally */
+    gap: 20px; /* Space between items */
+    padding: 20px; /* Padding around the container */
+    background: #f4f4f4; /* Soft background for contrast */
+  }
+  
+  
+
+
+
+
+/* //////////////////// courses ............////////// */
+/* //////////////////// courses ............////////// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

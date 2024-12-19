@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Subscribers Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            overflow: hidden;
+            animation: backgroundMove 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes backgroundMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Celebration Container */
+        .celebration {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            perspective: 1000px;
+            margin: 1.5rem 0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .counter {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ffea00;
+            text-shadow: 0 0 30px rgba(255, 234, 0, 0.8), 0 0 50px rgba(255, 234, 0, 0.6);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: none;
+            text-align: center;
+            line-height: 1;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes rotateUp {
+            0% {
+                transform: rotateX(90deg) translateY(100%);
+            }
+            50% {
+                transform: rotateX(45deg) translateY(50%);
+            }
+            100% {
+                transform: rotateX(0deg) translateY(0%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="celebration">
+        <h1>🎉 Thank You for 500 Subscribers! 🎉</h1>
+        <div class="counter-container">
+            <div class="counter" id="counter">0</div>
+        </div>
+        <p>We couldn’t have done it without your support! 🥳</p>
+    </div>
+    <script>
+        const counter = document.getElementById("counter");
+
+        let currentNumber = 0;
+        const targetNumber = 500;
+        const speed = 5; // Lower is faster (adjusted for quicker count)
+
+        function updateCounter() {
+            if (currentNumber < targetNumber) {
+                currentNumber++;
+                counter.textContent = currentNumber;
+
+                // Add rotation effect
+                counter.style.animation = "rotateUp 0.2s ease-in-out";
+
+                // Remove animation to allow re-triggering
+                setTimeout(() => {
+                    counter.style.animation = "none";
+                }, 200);
+
+                // Call the function recursively
+                setTimeout(updateCounter, speed);
+            }
+        }
+
+        updateCounter();
+    </script>
+</body>
+</html>

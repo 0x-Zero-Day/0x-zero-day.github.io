@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../photos/admin-logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Titan One:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Slackey&family=Patrick+Hand+SC&family=DynaPuff&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Zero Day</title>
+</head>
+<body>
+    <!-- ////////navbar/////// -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#" onclick="window.location.href='../html/index.html'">Zero <span class="rotate-text">Day</span></a>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button" aria-label="Search">
+                <i class='bx bx-search'></i>
+              </button>              
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <div class="menu" id="menu">
+            <a href="#" onclick="window.location.href='../html/index.html'">Home</a>
+            <a href="#about" onclick="window.location.href='../html/index.html#about'">About</a>
+            <a href="#" onclick="window.location.href='../html/courses.html'">Courses</a>
+            <!-- Dropdown for 'Practices' -->
+            <div class="dropdown">
+                <button class="dropbtn">Practices 
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="window.location.href='./scratch-practice.html'">Scratch</a>
+                    <a href="#" onclick="window.location.href='./web-practice.html'">Web</a>
+                    <a href="#" onclick="window.location.href='./coming-soon.html'">C++</a>
+                    <a href="#" onclick="window.location.href='./coming-soon.html'">Python</a>
+                    <a href="#" onclick="window.location.href='./security-practice.html'">Security</a>
+                </div>
+            </div> 
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    
+
+    <!-- ////////navbar/////// -->
+
+
+
+    <!-- /////////main page////////// -->
+     <section class="main">
+        <div class="main">
+            <h1>Best Platform To Learn Programming </h1>
+            <p>Learn programming from the ground up: <span class="write"></span> <br>
+               <a href="#contact">Start now and join us on social media for updates!</a> 
+            </p>
+            <div class="main-buttons">
+                <button class="btn" onclick="window.location.href='../html/courses.html'">Courses</button>
+                <button class="btn" onclick="window.location.href='../html/index.html#about'">About Us</button>
+            </div>
+         </div>
+     </section>
+    <!-- /////////main page////////// -->
+     <!-- ////////this is abut////////// -->
+     <section class="about" id="about">
+        <div class="about-wrapper">
+           <div class="content">
+                <h1><span>About</span> Me</h1>
+                <p class="description">I'm Frankishten, a passionate computer science student with a love for web development, cybersecurity, and teaching. I enjoy helping beginners and kids learn programming in a fun and engaging way. Join me on this exciting journey of coding!</p>
+                <button class="contact-button" onclick="window.location.href='../html/index.html#contact'">Contact Me</button>
+               
+                <div class="social-media">
+                    <a href="https://www.whatsapp.com/channel/0029Vad8RSv84OmC2L6ngc2X" rel="noopener" target="_blank" aria-label="Twitter" class="whatsapp" style="--i:1"> <i class="bx bxl-whatsapp"></i></a>
+                    <a href="https://www.youtube.com/@0x_DaY" rel="noopener" target="_blank" aria-label="Facebook" class="youtube" style="--i:2"> <i class="bx bxl-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@tech_hat" rel="noopener" target="_blank" aria-label="Instagram" class="tiktok" style="--i:3"> <i class="bx bxl-tiktok"></i></a>
+                    <a href="https://discord.com/invite/nvp7WxFSxb" rel="noopener" target="_blank" aria-label="LinkedIn" class="discord" style="--i:4"> <i class='bx bxl-discord-alt bx-tada' ></i></a>
+                </div>
+            </div>
+            <div class="image">
+                <img src="../photos/me.jpg" alt="Profile Photo">
+            </div>
+        </div>
+    </section>
+    
+     <!-- ////////this is abut////////// -->
+
+
+
+
+
+<!-- /////////////////// what people say ///////////// -->
+
+
+
+
+<section class="comments">
+  <div class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-icon"><i class='bx bxs-message-dots bx-tada' ></i></span>
+            <h2>What People Are Saying</h2>
+            <p>Discover what our community has to say about their experiences</p>
+        </div>
+        
+        <div class="testimonials-grid" id="testimonials-grid">
+            <!-- Testimonials -->
+            <article class="testimonial-card">
+                <div class="card-header">
+                    <img src="../followers_photos/3.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@Modadoch</h3>
+                        <span class="badge">Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    اسطورة تستاهل اكثر من كده 💗✨🇵🇸
+                </blockquote>
+            </article>
+            <article class="testimonial-card">
+                <div class="card-header">
+                    <img src="../followers_photos/4.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@OmarAmmar-o8v</h3>
+                        <span class="badge">Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    @0x_DaY شكراً لك أفضل مبرمج
+                </blockquote>
+            </article>
+            <article class="testimonial-card" id="golden">
+                <div class="card-header">
+                    <img src="../followers_photos/5.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@Mrchocolate-w6d  </h3>
+                        <span class="badge">Super_Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    😮وات كيف انا تأخرت❤❤استمررر مبروك 200 مشترك مقدماً🎉🎉 أن شاء الله تحصل الف مشترك شرح رهييييب❤❤❤
+                </blockquote>
+            </article>
+            <article class="testimonial-card">
+                <div class="card-header">
+                    <img src="../followers_photos/2.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@Youmna_20085</h3>
+                        <span class="badge">Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    ❤️❤️‍🔥اعحبني مرا كثير
+                </blockquote>
+            </article>
+            <article class="testimonial-card">
+                <div class="card-header">
+                    <img src="../followers_photos/1.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@قطرالندى-ض5ق</h3>
+                        <span class="badge">Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    شكرا لك🙏♥️♥️♥️♥️♥️😍😍😍😍🥰🥰🥰😍😍🥰🥰😍😍🥰😍😍🥰😍😍😍🥰🥰♥️♥️♥️♥️♥️♥️♥️
+                </blockquote>
+            </article>
+            <article class="testimonial-card">
+                <div class="card-header">
+                    <img src="../followers_photos/3.png" alt="photo" class="avatar">
+                    <div class="user-details">
+                        <h3>@Modadoch</h3>
+                        <span class="badge">Follower</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <blockquote>
+                    اسطورة الفيديو مره جامد 🇵🇸✨✨✨
+                </blockquote>
+            </article>
+            
+            <!-- Add more testimonials as needed -->
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/13.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@code_it_simply   </h3>
+                      <span class="badge">Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                ما شاء الله عليك مبدع والصورة المصغرة رهيبة كثير ..استمر🎉❤
+              </blockquote>
+          </article>
+            <article class="testimonial-card" id="golden">
+              <div class="card-header">
+                  <img src="../followers_photos/5.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@Anime-cq1pwm </h3>
+                      <span class="badge">Super_Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                متحمسسسسس❤❤ مع شرح هذا الشخص الرهييييبب❤❤❤
+              </blockquote>
+          </article>
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/12.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@marsho8860  </h3>
+                      <span class="badge">Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                @0x_DaY بس انت ممتاز الصراحة استمر
+              </blockquote>
+          </article>
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/11.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@OCBb721  </h3>
+                      <span class="badge">Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                إستمر يا أسطورة
+              </blockquote>
+          </article>
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/10.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@zeus_vii </h3>
+                      <span class="badge">Follower 👑</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                beast youtuber
+              </blockquote>
+          </article>
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/9.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@Niteogen  </h3>
+                      <span class="badge">Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                استمر
+              </blockquote>
+          </article>
+            <article class="testimonial-card">
+              <div class="card-header">
+                  <img src="../followers_photos/6.png" alt="photo" class="avatar">
+                  <div class="user-details">
+                      <h3>@Ayusha-sv9bk5pl4b </h3>
+                      <span class="badge">Follower</span>
+                      <div class="rating">★★★★★</div>
+                  </div>
+              </div>
+              <blockquote>
+                شكرااااااااااااااااا❤❤❤❤❤❤❤
+              </blockquote>
+          </article>
+          <article class="testimonial-card">
+            <div class="card-header">
+                <img src="../followers_photos/7.png" alt="photo" class="avatar">
+                <div class="user-details">
+                    <h3>@Anime-cq1pwm </h3>
+                    <span class="badge">Follower</span>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+            <blockquote>
+              شكرا على الشرح👍🏻
+            </blockquote>
+            
+        </article>
+        <article class="testimonial-card">
+          <div class="card-header">
+              <img src="../followers_photos/8.png" alt="photo" class="avatar">
+              <div class="user-details">
+                  <h3>@halimasaadi9703  </h3>
+                  <span class="badge">Follower</span>
+                  <div class="rating">★★★★★</div>
+              </div>
+          </div>
+          <blockquote>
+            شكرا جزيلا لك
+          </blockquote>
+      </article>
+      <article class="testimonial-card">
+        <div class="card-header">
+            <img src="../followers_photos/12.png" alt="photo" class="avatar">
+            <div class="user-details">
+                <h3>@marsho8860  </h3>
+                <span class="badge">Follower</span>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+        <blockquote>
+          رائع استمر بجد ممتاز        
+        </blockquote>
+        
+        </div>
+    </div>
+  </div>
+  
+  <script>
+    // Duplicate testimonials for infinite scroll
+    const grid = document.getElementById('testimonials-grid');
+    const clones = grid.innerHTML;
+    grid.innerHTML += clones;
+  </script>
+</section>
+  
+  
+  
+
+<!-- /////////////////// what people say ///////////// -->
+<!-- /////////////////// what people say ///////////// -->
+
+
+
+
+
+
+
+<!-- /////////////////////top 3 followers ///////////////////// -->
+<!-- /////////////////////top 3 followers ///////////////////// -->
+
+<div class="competition">
+    <section class="countdown-section">
+        <div class="countdown-wrapper">
+          <div class="countdown-header">
+            <h2>Coming Competition</h2>
+            <p>Get ready to join the challenge!</p>
+          </div>
+    
+          <div class="countdown-timer" id="countdown">
+            <div class="time-box">
+              <span id="days"></span>
+              <span>Days</span>
+            </div>
+            <div class="time-box">
+              <span id="hours"></span>
+              <span>Hours</span>
+            </div>
+            <div class="time-box">
+              <span id="minutes"></span>
+              <span>Minutes</span>
+            </div>
+            <div class="time-box">
+              <span id="seconds"></span>
+              <span>Seconds</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+</div>
+  <script>
+    // Set the date we're counting down to
+    const countdownDate = new Date("Mars 30, 2025 00:00:00").getTime();
+
+    // Update the countdown every 1 second
+    const countdownFunction = setInterval(function() {
+      // Get the current date and time
+      const now = new Date().getTime();
+
+      // Find the distance between now and the countdown date
+      const distance = countdownDate - now;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      // If the countdown is finished, display a message
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "The competition has started!";
+      }
+    }, 1000);
+  </script>
+
+<!-- /////////////////////top 3 followers ///////////////////// -->
+
+
+
+
+
+
+
+
+
+
+<!-- ///////////////////////contact/////////////////// -->
+<!-- ///////////////////////contact/////////////////// -->
+ <section class="contact" id="contact">
+    <div class="contact-container">
+        <div class="contact-image">
+            <img src="../photos/contact.png" alt="Contact Illustration">
+        </div>
+        <div class="contact-content">
+            <h1 class="contact-header">Let's Connect</h1>
+            <p class="contact-text">Feel free to reach out on any of my social media accounts below. Let’s collaborate, chat, or just say hello!</p>
+            <div class="social-icons">
+                <!-- <a href="https://twitter.com/yourusername" target="_blank" rel="noopener"><i class='bx bxl-twitter'></i></a>
+                <a href="https://facebook.com/yourusername" target="_blank" rel="noopener"><i class='bx bxl-facebook'></i></a> -->
+                <a href="https://www.tiktok.com/@tech_hat" target="_blank" rel="noopener"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://www.whatsapp.com/channel/0029Vad8RSv84OmC2L6ngc2X" target="_blank" rel="noopener"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://discord.com/invite/nvp7WxFSxb" target="_blank" rel="noopener"><i class='bx bxl-discord-alt'></i></a>
+                <a href="https://www.youtube.com/@0x_DaY" target="_blank" rel="noopener"><i class='bx bxl-youtube'></i></a>
+            </div>
+        </div>
+    </div>    
+ </section>
+<!-- ///////////////////////contact/////////////////// -->
+<!-- ///////////////////////contact/////////////////// -->
+
+
+
+
+
+
+
+
+
+
+<!-- ////////////////////////footer//////////////////////////// -->
+<!-- ////////////////////////footer//////////////////////////// -->
+
+
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Logo and Tagline -->
+      <div class="footer-logo">
+        <img src="../photos/admin.png" alt="Logo" class="logo-img" />
+        <p>Zero Day</p>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#" onclick="window.location.href='../html/courses.html'">Courses</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://www.tiktok.com/@tech_hat"><i class="bx bxl-tiktok"></i></a>
+          <a href="https://www.whatsapp.com/channel/0029Vad8RSv84OmC2L6ngc2X"><i class="bx bxl-whatsapp"></i></a>
+          <a href="https://www.youtube.com/@0x_DaY"><i class="bx bxl-youtube"></i></a>
+          <a href=" https://discord.com/invite/nvp7WxFSxb  "><i class="bx bxl-discord-alt"></i></a>
+        </div>
+      </div>
+
+      <!-- Achievements Section -->
+      <div class="footer-achievements">
+        <h3>Future Achievements</h3>
+        <ul class="achievements-list">
+          <li><i class="bx bx-award"></i> Winner of Best UX Design 2024</li>
+          <li><i class="bx bx-trophy"></i> Over 1M Happy Users Worldwide</li>
+          <li><i class="bx bx-star"></i> Rated 5 Stars by 99% of Our Users</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Zero Day. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+<!-- ////////////////////////footer//////////////////////////// -->
+<!-- ////////////////////////footer//////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class='bx bx-chevrons-up'></i></button>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+     <script src="../js/script.js"></script>
+</body>
+</html>
