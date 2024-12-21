@@ -429,6 +429,10 @@ body {
   .button:hover {
     background: #b8281a;
   }
+
+  .add-to-cart{
+    cursor: not-allowed;
+  }
   
   .no-courses {
     text-align: center;
