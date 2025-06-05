@@ -92,7 +92,8 @@
             <iframe src="https://scratch.mit.edu/projects/1105810047/embed" allowtransparency="true" frameborder="0" scrolling="no" loading="lazy" allowfullscreen></iframe>
             <div class="input-wrapper">
                 <input type="text" placeholder="لا حاجة للإجابة" disabled>
-                <button class="submit-button" onclick="showToast()" onclick="gtag('event', 'click', {'event_category': 'button','event_label': 'solved'})" >Mark as Completed</button>
+                <button class="submit-button" onclick="showToast(); gtag('event', 'click', { 'event_category': 'button', 'event_label': 'solved' });">Mark as Completed</button>
+
             </div>
         </div>
     </div>
