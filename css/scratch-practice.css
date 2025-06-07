@@ -520,6 +520,18 @@ button.submit-button {
     color: rgb(236, 184, 30);
 }
 
+.new-challenge {
+  display: inline-block;
+  background-color: #ff4757; /* A strong red for "new" */
+  color: white;
+  padding: 2px 8px;
+  margin-left: 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .challenge {
