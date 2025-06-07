@@ -522,13 +522,33 @@ button.submit-button {
 
 .new-challenge {
   display: inline-block;
-  background-color: #ff4757; /* A strong red for "new" */
+  background: #ff3e3e;
   color: white;
-  padding: 2px 8px;
-  margin-left: 10px;
-  border-radius: 12px;
-  font-size: 0.8em;
-  vertical-align: middle;
+  padding: 5px 12px;
+  margin-left: 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 0 8px rgba(255, 62, 62, 0.8);
+  animation: glowPulse 1.2s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 62, 62, 0.7),
+                0 0 10px rgba(255, 62, 62, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 62, 62, 1),
+                0 0 20px rgba(255, 62, 62, 0.9);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 62, 62, 0.7),
+                0 0 10px rgba(255, 62, 62, 0.6);
+    transform: scale(1);
+  }
 }
 
 
