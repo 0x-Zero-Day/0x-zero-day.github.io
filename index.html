@@ -358,67 +358,155 @@
 <!-- /////////////////////top 3 followers ///////////////////// -->
 <!-- /////////////////////top 3 followers ///////////////////// -->
 
-<div class="competition">
-    <section class="countdown-section">
-        <div class="countdown-wrapper">
-          <div class="countdown-header">
-            <h2>Coming Competition</h2>
-            <p>Get ready to join the challenge!</p>
-          </div>
-    
-          <div class="countdown-timer" id="countdown">
-            <div class="time-box">
-              <span id="days"></span>
-              <span>Days</span>
-            </div>
-            <div class="time-box">
-              <span id="hours"></span>
-              <span>Hours</span>
-            </div>
-            <div class="time-box">
-              <span id="minutes"></span>
-              <span>Minutes</span>
-            </div>
-            <div class="time-box">
-              <span id="seconds"></span>
-              <span>Seconds</span>
-            </div>
-          </div>
+   <div class="competition-container">
+        <!-- Ramadan Decorations -->
+        <div class="ramadan-decoration decoration-1">
+            <i class="fas fa-moon"></i>
         </div>
-      </section>
-    
-</div>
-  <script>
-    // Set the date we're counting down to
-    const countdownDate = new Date("sep 30, 2025 00:00:00").getTime();
+        <div class="ramadan-decoration decoration-2">
+            <i class="fas fa-star-and-crescent"></i>
+        </div>
+        <div class="ramadan-decoration decoration-3">
+            <i class="fas fa-mosque"></i>
+        </div>
+        <div class="ramadan-decoration decoration-4">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="ramadan-decoration decoration-5">
+            <i class="fas fa-quran"></i>
+        </div>
+        <div class="ramadan-decoration decoration-6">
+            <i class="fas fa-praying-hands"></i>
+        </div>
 
-    // Update the countdown every 1 second
-    const countdownFunction = setInterval(function() {
-      // Get the current date and time
-      const now = new Date().getTime();
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1>Ramadan Competition 2025</h1>
+            <p>Join the challenge and showcase your talents in this blessed month</p>
+        </div>
 
-      // Find the distance between now and the countdown date
-      const distance = countdownDate - now;
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Leaderboard Section -->
+            <div class="leaderboard-section">
+                <div class="leaderboard-header">
+                    <h2>Top Performers</h2>
+                    <p>Celebrating our Ramadan competition champions</p>
+                </div>
+                
+                <div class="podium">
+                    <div class="podium-item second">
+                        <div class="winner-info">
+                            <div class="winner-trophy">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="winner-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">3rd Winner</div>
+                                <div class="winner-score">4,850 pts</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="podium-item first">
+                        <div class="winner-info">
+                            <div class="winner-trophy">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="winner-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">1st Winner</div>
+                                <div class="winner-score">5,200 pts</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="podium-item third">
+                        <div class="winner-info">
+                            <div class="winner-trophy">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="winner-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">2nd winner</div>
+                                <div class="winner-score">4,650 pts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      // Calculate days, hours, minutes, and seconds
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            <!-- Countdown Section -->
+            <div class="countdown-section">
+                <div class="countdown-timer" id="countdown">
+                    <div class="time-box">
+                        <span id="days"></span>
+                        <span>Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours"></span>
+                        <span>Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes"></span>
+                        <span>Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds"></span>
+                        <span>Seconds</span>
+                    </div>
+                </div>
+                <button class="start-button" id="startButton" style="display: none;">Start Competition</button>
+            </div>
+        </div>
+    </div>
 
-      // Display the result
-      document.getElementById("days").innerHTML = days;
-      document.getElementById("hours").innerHTML = hours;
-      document.getElementById("minutes").innerHTML = minutes;
-      document.getElementById("seconds").innerHTML = seconds;
+    <script>
+        // Set the date we're counting down to (March 21, 2025)
+        const countdownDate = new Date("feb 21, 2026 00:00:00").getTime();
+        const startButton = document.getElementById('startButton');
 
-      // If the countdown is finished, display a message
-      if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "The competition has started!";
-      }
-    }, 1000);
-  </script>
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function() {
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            const distance = countdownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the countdown is finished, display a message and show the button
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<div class='countdown-finished'>The Ramadan competition has started! <i class='fas fa-mosque'></i></div>";
+                startButton.style.display = 'block';
+            }
+        }, 1000);
+
+        // Add event listener to the start button
+        startButton.addEventListener('click', function() {
+            alert('Competition is starting! Good luck to all participants!');
+            // Here you would typically redirect to the competition page
+            // window.location.href = 'competition.html';
+        });
+    </script>
 
 <!-- /////////////////////top 3 followers ///////////////////// -->
 
