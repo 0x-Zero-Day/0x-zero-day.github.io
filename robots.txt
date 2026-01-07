@@ -2,4 +2,6 @@ Congratulations 🥳
 
 You Found The Secret Flag:
 
-ZeroFlag{Th3_s3cr3t_Flag}
+// First flag it's easy ?? maybe keep searching for other two flags
+
+0_Day{Th3_s3cr3t_Flag}
