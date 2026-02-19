@@ -8,17 +8,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3W3ZGPCT2E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-3W3ZGPCT2E');
-</script>
-
-  
   <style>
     :root {
       --primary: #10b981;
@@ -735,6 +724,58 @@
         font-size: 1.5rem;
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Firefox */
+* {
+  scrollbar-width: 10px;
+  scrollbar-color: #d97706 #111;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d97706;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -758,28 +799,19 @@
       <!-- Challenge 1 -->
       <div class="challenge-card">
         <div class="challenge-number">1</div>
-        <h2 class="challenge-title"> التحدى الاول </h2>
-        <p class="challenge-description">  هذا تحدى للتجربه و ليس التحدى الحقيقى  </p>
+        <h2 class="challenge-title">تشفير القيصر</h2>
+        <p class="challenge-description">فك تشفير النص باستخدام خوارزمية سيزر الشهيرة</p>
         
         <div class="challenge-content">
-          <div class="challenge-content">
-          <div class="qr-container">
-            <div class="qr-half">جزء  من الفيديو</div>
-            <div class="qr-half">جزء  من الموقع</div>
-          </div>
-          
-          <div style="background:#064e3b; height:150px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin:15px 0;">
-  <i class="fas fa-gamepad" style="font-size: 3rem; color: #facc15;"></i>
-</div>
-
+          <div class="cipher-text">l dp zlqqhu</div>
           
           <div class="hint-box">
             <div class="hint-title"><i class="fas fa-lightbulb"></i> التلميح</div>
-            <p>هذا مجرد نص تجريبي يُستخدم لعرض شكل المحتوى داخل الصفحة.</p>
-<p>يمكن استبدال هذا الكلام لاحقًا بمحتوى آخر حسب الحاجة.</p>
-<p>الغرض من هذا النص هو ملء المساحة فقط دون التركيز على المعنى.</p>
-<p class="cipher-text">هذا سطر نصي عادي مكتوب للتجربة فقط ولا يحمل أي دلالة خاصة.</p>
-
+            <p>هذا نص مشفر باستخدام تشفير سيزر (Caesar Cipher)، وهو شفرة تقوم بتحريك الحروف بعدد معين من المواقع في الأبجدية.</p>
+            <p><strong>مثال:</strong> إذا كان التحريك 3 مواضع، فالحرف A يصبح D، والحرف B يصبح E، وهكذا...</p>
+            <p>و عند فك التشفير اذا كان D يرجع الى A  و هكذا... </p><br>
+            <h3 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">مفتاح التشفير : 3</h3>
+            <p class="cipher-text">a b c d e f g h i j k l m n o p q r s t u v w x y z </p>
             
         </div>
         </div>
@@ -791,7 +823,7 @@
         
         <div class="input-group">
           <label for="answer1">الإجابة:</label>
-          <input type="text" id="answer1" placeholder="اكتب  الاجابه ">
+          <input type="text" id="answer1" placeholder="اكتب النص بعد فك التشفير">
         </div>
         
         <button id="submit1" class="submit-btn">تحقق من الإجابة</button>
@@ -872,12 +904,12 @@
     // Challenge configurations
     const challenges = {
       challenge1: {
-        id: 'test',
+        id: 'challenge1',
         nameInput: 'name1',
         answerInput: 'answer1',
         submitBtn: 'submit1',
         status: 'status1',
-        displayName: 'التحدى الاول'
+        displayName: 'تشفير سيزر'
       }
     };
 
@@ -1237,11 +1269,10 @@
           // Convert challenge ID to readable name
           let challengeName = '';
           switch(entry.challengeId) {
-            case 'challenge1': challengeName = 'التحدى الاول'; break;
-            case 'challenge2': challengeName = 'التحدى التانى'; break;
-            case 'challenge3': challengeName = 'من هو اللص'; break;
+            case 'challenge1': challengeName = 'شفره القيصر'; break;
+            case 'challenge2': challengeName = 'لعبة الخدش'; break;
+            case 'challenge3': challengeName = 'حادثه سرقه ...!!'; break;
             case 'challenge4': challengeName = 'شفرة مزدوجة'; break;
-            case 'test': challengeName = 'التحدى التجريبى'; break;
             default: challengeName = entry.challengeId;
           }
           
