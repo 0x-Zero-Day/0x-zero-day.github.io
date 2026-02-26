@@ -734,9 +734,7 @@
 
 
 
-
-
-
+    
     /* Firefox */
 * {
   scrollbar-width: 10px;
@@ -756,15 +754,6 @@
   background-color: #d97706;
   border-radius: 10px;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -799,7 +788,7 @@
       <!-- Challenge 1 -->
       <div class="challenge-card">
         <div class="challenge-number">1</div>
-        <h2 class="challenge-title">تشفير القيصر</h2>
+        <h2 class="challenge-title">شفره القيصر</h2>
         <p class="challenge-description">فك تشفير النص باستخدام خوارزمية سيزر الشهيرة</p>
         
         <div class="challenge-content">
@@ -830,7 +819,69 @@
         <div id="status1" class="challenge-status status-pending">قيد الحل</div>
       </div>
 
-    </div>
+      <!-- Challenge 2 -->
+      <div class="challenge-card">
+        <div class="challenge-number">2</div>
+        <h2 class="challenge-title">لعبة الخدش</h2>
+
+         <h2 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">المرحله الاولى</h2>
+
+        <h3><p class="challenge-description">العب لعبة البطاقات لاكتشاف كلمة المرور الصحيحه</p></h3>
+        
+        <div class="challenge-content">
+          <div class="game-container">
+            <p> اعثر على البطاقات المتشابهه لتعرف اى كلمه سر هى الصحيحه </p>
+            <div style="background:rgba(6, 95, 70, 0.5); height:450px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin:15px 0; border: 1px solid var(--ramadan-gold);">
+              <!-- <i class="fas fa-gamepad" style="font-size: 3rem; color: var(--ramadan-gold);"></i> -->
+                             <iframe src="https://scratch.mit.edu/projects/1250256580/embed" allowtransparency="true" frameborder="0" scrolling="no" style="width: 65%; height:65%; border-radius: 10px; overflow:hidden" loading="lazy" allowfullscreen></iframe>
+            </div>
+            
+            <h3><p><strong>الان ما هى كلمه السر الصحيحه</strong></p></h3>
+
+<img 
+    src="./image.png" 
+    alt="صورة توضيحية في المنتصف" 
+    style="background:rgba(6, 95, 70, 0.5); 
+           height:450px; 
+           border-radius:10px; 
+           /* مفتاح التوسيط: تحويل العنصر إلى Block واستخدام Margin Auto */
+           display: block; 
+           margin: 15px auto; 
+           border: 1px solid var(--ramadan-gold);"/>     
+          
+
+
+          </div>
+
+
+                    <h2 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">المرحله الثانيه</h2>
+
+                    <h3><p class="challenge-description"> كلمه السر عباره عن جزئيين : </p></h3>
+                    
+                    <p>1. الباسورد الذى حصلت عليه من الصوره </p>
+                    <p> 2. فك تشفير هذه الكلمه و هى مشفره بنفس الطريقه التى فى التحدى الاول <span style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:8px; background: rgba(245, 158, 11, 0.2); display: inline-block;"><strong>fdswdlq</strong></span></p>
+                    <p>مثال :</p>
+                    <p>اذا كانت الكلمه التى وجدها من الصوره هى :  123456</p>
+                    <p> و الكلمه المشفره بعد فك تشفيرا هى : password</p>
+                    <p> فان كلمه السر النهائيه هى :    password123456 </p>
+
+
+        </div>
+        
+        <div class="input-group">
+          <label for="name2">اسمك:</label>
+          <input type="text" id="name2" placeholder="اكتب اسمك">
+        </div>
+        
+        <div class="input-group">
+          <label for="answer2">كلمة المرور:</label>
+          <input type="text" id="answer2" placeholder="أدخل كلمة المرور التي وجدتها">
+        </div>
+        
+        <button id="submit2" class="submit-btn">فتح القفل</button>
+        <div id="status2" class="challenge-status status-pending">قيد الحل</div>
+      </div>
+
 
     <div class="leaderboard-section">
       <h2 class="section-title"><i class="fas fa-ranking-star"></i> لوحة المتصدرين</h2>
@@ -910,6 +961,14 @@
         submitBtn: 'submit1',
         status: 'status1',
         displayName: 'تشفير سيزر'
+      },
+      challenge2: {
+        id: 'challenge2',
+        nameInput: 'name2',
+        answerInput: 'answer2',
+        submitBtn: 'submit2',
+        status: 'status2',
+        displayName: 'لعبة الخدش'
       }
     };
 
@@ -1035,15 +1094,15 @@
           const data = doc.data();
           correctAnswers[data.challengeId] = data.correctAnswer;
         });
-        console.log('Correct answers loaded:');
+        console.log('Correct answers loaded:', correctAnswers);
       } catch (error) {
         console.error('Error loading correct answers:', error);
         // Fallback to default answers if Firestore fails
         correctAnswers = {
-          challenge1: 'Challenge_fake_answer',
-          challenge2: 'Challenge_fake_answer',
-          challenge3: 'Challenge_fake_answer',
-          challenge4: 'Challenge_fake_answer'
+          challenge1: 'you are winner',
+          challenge2: 'open123',
+          challenge3: 'أحمر',
+          challenge4: 'final challenge'
         };
       }
     }
