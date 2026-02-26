@@ -1,1 +1,1397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="shortcut icon" href="../photos/admin-logo.svg" type="image/svg+xml">
+  <title>تحديات رمضان - Ramadan Challenges</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --secondary: #f59e0b;
+      --dark: #0f172a;
+      --darker: #020617;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --ramadan-green: #065f46;
+      --ramadan-gold: #d97706;
+      --ramadan-cream: #fef3c7;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--darker) 0%, #0c4a6e 100%);
+      color: var(--light);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ramadan Background Elements */
+    .ramadan-moon {
+      position: fixed;
+      top: 50px;
+      left: 50px;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 30%, #fef3c7, #f59e0b);
+      border-radius: 50%;
+      box-shadow: 0 0 30px #f59e0b;
+      z-index: -1;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .ramadan-star {
+      position: fixed;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite;
+      z-index: -1;
+    }
+
+    .ramadan-mosque {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
+      color: var(--ramadan-gold);
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .ramadan-lantern {
+      position: fixed;
+      font-size: 2rem;
+      color: var(--ramadan-gold);
+      opacity: 0.3;
+      z-index: -1;
+      animation: swing 6s ease-in-out infinite;
+    }
+
+    .lantern-1 { top: 20%; left: 10%; }
+    .lantern-2 { top: 60%; right: 15%; }
+    .lantern-3 { top: 30%; right: 5%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      background: linear-gradient(135deg, rgba(6, 95, 70, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--ramadan-gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary), var(--ramadan-gold));
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .ramadan-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--ramadan-gold), #b45309);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .subtitle {
+      color: var(--ramadan-cream);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    .challenges-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .challenge-card {
+      background: linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--ramadan-gold);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary), var(--ramadan-gold));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .challenge-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .challenge-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .challenge-number {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(135deg, var(--ramadan-gold), #b45309);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .challenge-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--ramadan-cream);
+      padding-right: 45px;
+    }
+
+    .challenge-description {
+      color: #cbd5e1;
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+
+    .challenge-content {
+      margin-bottom: 20px;
+    }
+
+    .cipher-text {
+      background: rgba(6, 95, 70, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-family: monospace;
+      font-size: 1.2rem;
+      margin: 15px 0;
+      border: 1px solid var(--ramadan-gold);
+      color: var(--ramadan-cream);
+    }
+
+    .hint-box {
+      background: rgba(6, 95, 70, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      border-right: 4px solid var(--ramadan-gold);
+    }
+
+    .hint-title {
+      color: var(--ramadan-gold);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--ramadan-cream);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid var(--ramadan-gold);
+      background: rgba(6, 95, 70, 0.3);
+      color: var(--light);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+
+    input::placeholder {
+      color: #94a3b8;
+    }
+
+    button {
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    button:disabled {
+      background: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    button:disabled::before {
+      display: none;
+    }
+
+    .success-btn {
+      background: linear-gradient(90deg, var(--success), #16a34a);
+    }
+
+    .leaderboard-section {
+      background: linear-gradient(135deg, rgba(6, 95, 70, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--ramadan-gold);
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .leaderboard-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary), var(--ramadan-gold));
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--ramadan-cream);
+    }
+
+    .leaderboard-tabs {
+      display: flex;
+      margin-bottom: 20px;
+      background: rgba(6, 95, 70, 0.5);
+      border-radius: 10px;
+      padding: 5px;
+      border: 1px solid var(--ramadan-gold);
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+      color: var(--ramadan-cream);
+    }
+
+    .tab.active {
+      background: var(--ramadan-gold);
+      color: white;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .leaderboard-list {
+      list-style: none;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 10px;
+      background: rgba(6, 95, 70, 0.3);
+      border-radius: 10px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .leaderboard-item:hover {
+      transform: translateX(5px);
+      background: rgba(6, 95, 70, 0.5);
+      border-color: var(--ramadan-gold);
+    }
+
+    .rank {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-left: 15px;
+      background: linear-gradient(135deg, var(--ramadan-gold), #b45309);
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .rank-1 {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .rank-2 {
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+    }
+
+    .rank-3 {
+      background: linear-gradient(135deg, #a16207, #854d0e);
+    }
+
+    .player-info {
+      flex: 1;
+    }
+
+    .player-name {
+      font-weight: 600;
+      color: var(--ramadan-cream);
+    }
+
+    .player-stats {
+      display: flex;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .stat {
+      margin-left: 15px;
+    }
+
+    .empty-leaderboard {
+      text-align: center;
+      padding: 30px;
+      color: #94a3b8;
+    }
+
+    .challenge-status {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .status-completed {
+      background: rgba(34, 197, 94, 0.2);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    .status-pending {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+      border: 1px solid var(--warning);
+    }
+
+    .game-container {
+      background: rgba(6, 95, 70, 0.5);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+      border: 1px solid var(--ramadan-gold);
+    }
+
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .qr-half {
+      width: 150px;
+      height: 150px;
+      background: rgba(6, 95, 70, 0.7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ramadan-cream);
+      font-size: 0.9rem;
+      border: 1px solid var(--ramadan-gold);
+    }
+
+    .image-puzzle {
+      display: flex;
+      gap: 5px;
+      margin: 15px 0;
+    }
+
+    .image-half {
+      flex: 1;
+      height: 150px;
+      background: rgba(6, 95, 70, 0.7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ramadan-cream);
+      border: 1px solid var(--ramadan-gold);
+    }
+
+    .completion-item {
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      background: rgba(6, 95, 70, 0.3);
+      border-radius: 8px;
+      border-right: 4px solid var(--success);
+      transition: all 0.2s;
+    }
+
+    .completion-item:hover {
+      transform: translateX(5px);
+      background: rgba(6, 95, 70, 0.5);
+    }
+
+    /* Premium Alert Styles */
+    .alert-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(2, 6, 23, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .alert-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .alert-box {
+      background: linear-gradient(135deg, var(--ramadan-green) 0%, var(--dark) 100%);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 2px solid var(--ramadan-gold);
+      text-align: center;
+      transform: translateY(30px);
+      transition: transform 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .alert-overlay.active .alert-box {
+      transform: translateY(0);
+    }
+
+    .alert-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .alert-success .alert-icon {
+      color: var(--success);
+      text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+    }
+
+    .alert-error .alert-icon {
+      color: var(--danger);
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+
+    .alert-warning .alert-icon {
+      color: var(--warning);
+      text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    }
+
+    .alert-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: var(--ramadan-cream);
+    }
+
+    .alert-message {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .alert-button {
+      background: linear-gradient(90deg, var(--ramadan-gold), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      min-width: 120px;
+    }
+
+    .alert-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .alert-success .alert-button {
+      background: linear-gradient(90deg, var(--success), #16a34a);
+    }
+
+    .alert-error .alert-button {
+      background: linear-gradient(90deg, var(--danger), #dc2626);
+    }
+
+    .alert-warning .alert-button {
+      background: linear-gradient(90deg, var(--warning), #d97706);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--success);
+      opacity: 0;
+    }
+
+    .ramadan-confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      opacity: 0;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(500px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes ramadanConfettiFall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(500px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .challenges-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .qr-container, .image-puzzle {
+        flex-direction: column;
+      }
+      
+      .qr-half, .image-half {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .alert-box {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .alert-icon {
+        font-size: 3rem;
+      }
+
+      .alert-title {
+        font-size: 1.3rem;
+      }
+
+      .ramadan-moon {
+        width: 60px;
+        height: 60px;
+        top: 20px;
+        left: 20px;
+      }
+
+      .ramadan-lantern {
+        font-size: 1.5rem;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+    
+    /* Firefox */
+* {
+  scrollbar-width: 10px;
+  scrollbar-color: #d97706 #111;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d97706;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Ramadan Background Elements -->
+  <div class="ramadan-moon"></div>
+  <div class="ramadan-mosque">🕌</div>
+  <div class="ramadan-lantern lantern-1">🪔</div>
+  <div class="ramadan-lantern lantern-2">🪔</div>
+  <div class="ramadan-lantern lantern-3">🪔</div>
+
+  <div class="container">
+    <header>
+      <div class="ramadan-badge">رمضان كريم</div>
+      <h1><i class="fas fa-moon"></i> تحديات رمضانيه</h1>
+      <p class="subtitle"> ونفتكر دايمًا إن رمضان عبادة قبل أي شيء 🤍 <br>
+ما ننساش الدعاء، ونبعد عن أي حاجة تلهينا عن الطاعات <br>
+ونسعد بدعوتكم لينا بظهر الغيب 🌙✨ </p>
+    </header>
+
+    <div class="challenges-grid">
+      <!-- Challenge 1 -->
+      <div class="challenge-card">
+        <div class="challenge-number">1</div>
+        <h2 class="challenge-title">شفره القيصر</h2>
+        <p class="challenge-description">فك تشفير النص باستخدام خوارزمية سيزر الشهيرة</p>
+        
+        <div class="challenge-content">
+          <div class="cipher-text">l dp zlqqhu</div>
+          
+          <div class="hint-box">
+            <div class="hint-title"><i class="fas fa-lightbulb"></i> التلميح</div>
+            <p>هذا نص مشفر باستخدام تشفير سيزر (Caesar Cipher)، وهو شفرة تقوم بتحريك الحروف بعدد معين من المواقع في الأبجدية.</p>
+            <p><strong>مثال:</strong> إذا كان التحريك 3 مواضع، فالحرف A يصبح D، والحرف B يصبح E، وهكذا...</p>
+            <p>و عند فك التشفير اذا كان D يرجع الى A  و هكذا... </p><br>
+            <h3 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">مفتاح التشفير : 3</h3>
+            <p class="cipher-text">a b c d e f g h i j k l m n o p q r s t u v w x y z </p>
+            
+        </div>
+        </div>
+        
+        <div class="input-group">
+          <label for="name1">اسمك:</label>
+          <input type="text" id="name1" placeholder="اكتب اسمك">
+        </div>
+        
+        <div class="input-group">
+          <label for="answer1">الإجابة:</label>
+          <input type="text" id="answer1" placeholder="اكتب النص بعد فك التشفير">
+        </div>
+        
+        <button id="submit1" class="submit-btn">تحقق من الإجابة</button>
+        <div id="status1" class="challenge-status status-pending">قيد الحل</div>
+      </div>
+
+      <!-- Challenge 2 -->
+      <div class="challenge-card">
+        <div class="challenge-number">2</div>
+        <h2 class="challenge-title">لعبة الخدش</h2>
+
+         <h2 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">المرحله الاولى</h2>
+
+        <h3><p class="challenge-description">العب لعبة البطاقات لاكتشاف كلمة المرور الصحيحه</p></h3>
+        
+        <div class="challenge-content">
+          <div class="game-container">
+            <p> اعثر على البطاقات المتشابهه لتعرف اى كلمه سر هى الصحيحه </p>
+            <div style="background:rgba(6, 95, 70, 0.5); height:450px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin:15px 0; border: 1px solid var(--ramadan-gold);">
+              <!-- <i class="fas fa-gamepad" style="font-size: 3rem; color: var(--ramadan-gold);"></i> -->
+                             <iframe src="https://scratch.mit.edu/projects/1250256580/embed" allowtransparency="true" frameborder="0" scrolling="no" style="width: 65%; height:65%; border-radius: 10px; overflow:hidden" loading="lazy" allowfullscreen></iframe>
+            </div>
+            
+            <h3><p><strong>الان ما هى كلمه السر الصحيحه</strong></p></h3>
+
+<img 
+    src="./image.png" 
+    alt="صورة توضيحية في المنتصف" 
+    style="background:rgba(6, 95, 70, 0.5); 
+           height:450px; 
+           border-radius:10px; 
+           /* مفتاح التوسيط: تحويل العنصر إلى Block واستخدام Margin Auto */
+           display: block; 
+           margin: 15px auto; 
+           border: 1px solid var(--ramadan-gold);"/>     
+          
+
+
+          </div>
+
+
+                    <h2 style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:5px; background: rgba(245, 158, 11, 0.2); display: inline-block;">المرحله الثانيه</h2>
+
+                    <h3><p class="challenge-description"> كلمه السر عباره عن جزئيين : </p></h3>
+                    
+                    <p>1. الباسورد الذى حصلت عليه من الصوره </p>
+                    <p> 2. فك تشفير هذه الكلمه و هى مشفره بنفس الطريقه التى فى التحدى الاول <span style="color: var(--ramadan-gold); border: 1px solid var(--ramadan-gold); border-radius:10px; padding:8px; background: rgba(245, 158, 11, 0.2); display: inline-block;"><strong>fdswdlq</strong></span></p>
+                    <p>مثال :</p>
+                    <p>اذا كانت الكلمه التى وجدها من الصوره هى :  123456</p>
+                    <p> و الكلمه المشفره بعد فك تشفيرا هى : password</p>
+                    <p> فان كلمه السر النهائيه هى :    password123456 </p>
+
+
+        </div>
+        
+        <div class="input-group">
+          <label for="name2">اسمك:</label>
+          <input type="text" id="name2" placeholder="اكتب اسمك">
+        </div>
+        
+        <div class="input-group">
+          <label for="answer2">كلمة المرور:</label>
+          <input type="text" id="answer2" placeholder="أدخل كلمة المرور التي وجدتها">
+        </div>
+        
+        <button id="submit2" class="submit-btn">فتح القفل</button>
+        <div id="status2" class="challenge-status status-pending">قيد الحل</div>
+      </div>
+
+
+    <div class="leaderboard-section">
+      <h2 class="section-title"><i class="fas fa-ranking-star"></i> لوحة المتصدرين</h2>
+      
+      <div class="leaderboard-tabs">
+        <div class="tab active" data-tab="all">الكل</div>
+        <div class="tab" data-tab="challenge1">التحدي 1</div>
+        <div class="tab" data-tab="challenge2">التحدي 2</div>
+        <div class="tab" data-tab="challenge3">التحدي 3</div>
+        <div class="tab" data-tab="challenge4">التحدي 4</div>
+      </div>
+      
+      <ul class="leaderboard-list" id="leaderboardAll">
+        <!-- Leaderboard will be populated by JavaScript -->
+      </ul>
+      
+      <ul class="leaderboard-list" id="leaderboardChallenge1" style="display:none;"></ul>
+      <ul class="leaderboard-list" id="leaderboardChallenge2" style="display:none;"></ul>
+      <ul class="leaderboard-list" id="leaderboardChallenge3" style="display:none;"></ul>
+      <ul class="leaderboard-list" id="leaderboardChallenge4" style="display:none;"></ul>
+    </div>
+  </div>
+
+  <!-- Premium Alert Overlay -->
+  <div class="alert-overlay" id="alertOverlay">
+    <div class="alert-box" id="alertBox">
+      <div class="alert-icon" id="alertIcon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3 class="alert-title" id="alertTitle">تم بنجاح!</h3>
+      <p class="alert-message" id="alertMessage">Your message here</p>
+      <button class="alert-button" id="alertButton">موافق</button>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBSCsHCEEMsDBJf1TzAW7dayuDa2g8IqU",
+      authDomain: "ramadan-945b5.firebaseapp.com",
+      projectId: "ramadan-945b5",
+      storageBucket: "ramadan-945b5.appspot.com",
+      messagingSenderId: "570128627754",
+      appId: "1:570128627754:web:4affaaad3a84d1649b6b53",
+      measurementId: "G-XK2WNP1EZV"
+    };
+
+    // Initialize Firebase
+    try {
+      firebase.initializeApp(firebaseConfig);
+    } catch (error) {
+      console.log('Firebase already initialized');
+    }
+    
+    const db = firebase.firestore();
+
+    // Create Ramadan stars
+    function createRamadanStars() {
+      const starsCount = 30;
+      for (let i = 0; i < starsCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'ramadan-star';
+        star.style.width = Math.random() * 3 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 4 + 's';
+        document.body.appendChild(star);
+      }
+    }
+
+    // Challenge configurations
+    const challenges = {
+      challenge1: {
+        id: 'challenge1',
+        nameInput: 'name1',
+        answerInput: 'answer1',
+        submitBtn: 'submit1',
+        status: 'status1',
+        displayName: 'تشفير سيزر'
+      },
+      challenge2: {
+        id: 'challenge2',
+        nameInput: 'name2',
+        answerInput: 'answer2',
+        submitBtn: 'submit2',
+        status: 'status2',
+        displayName: 'لعبة الخدش'
+      }
+    };
+
+    let correctAnswers = {};
+
+    function getUUID() {
+      let uid = localStorage.getItem('challenge_uuid');
+      if (!uid) {
+        uid = crypto.randomUUID();
+        localStorage.setItem('challenge_uuid', uid);
+      }
+      return uid;
+    }
+
+    // Premium Alert Functions
+    function showAlert(type, title, message) {
+      const overlay = document.getElementById('alertOverlay');
+      const box = document.getElementById('alertBox');
+      const icon = document.getElementById('alertIcon');
+      const alertTitle = document.getElementById('alertTitle');
+      const alertMessage = document.getElementById('alertMessage');
+      const button = document.getElementById('alertButton');
+      
+      // Reset classes
+      box.className = 'alert-box';
+      
+      // Set type-specific styles
+      box.classList.add(`alert-${type}`);
+      
+      // Set content
+      alertTitle.textContent = title;
+      alertMessage.textContent = message;
+      
+      // Set icon based on type
+      const iconClass = {
+        success: 'fas fa-check-circle',
+        error: 'fas fa-times-circle',
+        warning: 'fas fa-exclamation-triangle'
+      }[type];
+      
+      icon.innerHTML = `<i class="${iconClass}"></i>`;
+      
+      // Show overlay
+      overlay.classList.add('active');
+      
+      // Add confetti for success
+      if (type === 'success') {
+        createRamadanConfetti();
+      }
+      
+      // Button click handler
+      button.onclick = function() {
+        overlay.classList.remove('active');
+      };
+      
+      // Auto close after 4 seconds for non-error messages
+      if (type !== 'error') {
+        setTimeout(() => {
+          overlay.classList.remove('active');
+        }, 4000);
+      }
+    }
+    
+    function createRamadanConfetti() {
+      const overlay = document.getElementById('alertOverlay');
+      const ramadanColors = ['#10b981', '#f59e0b', '#065f46', '#fef3c7', '#d97706'];
+      const ramadanSymbols = ['⭐', '🌙', '🕌', '🪔', '✨'];
+      
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'ramadan-confetti';
+        
+        // Use symbols occasionally
+        if (Math.random() > 0.7) {
+          confetti.textContent = ramadanSymbols[Math.floor(Math.random() * ramadanSymbols.length)];
+          confetti.style.fontSize = Math.random() * 10 + 10 + 'px';
+          confetti.style.background = 'transparent';
+        } else {
+          confetti.style.background = ramadanColors[Math.floor(Math.random() * ramadanColors.length)];
+        }
+        
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.animation = `ramadanConfettiFall ${Math.random() * 3 + 2}s linear forwards`;
+        overlay.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          if (confetti.parentNode) {
+            confetti.parentNode.removeChild(confetti);
+          }
+        }, 5000);
+      }
+    }
+
+    // Initialize all challenges
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Create Ramadan stars
+      createRamadanStars();
+      
+      const uid = getUUID();
+      
+      // Load correct answers from Firestore
+      await loadCorrectAnswers();
+      
+      // Initialize each challenge
+      for (const [key, challenge] of Object.entries(challenges)) {
+        await initializeChallenge(challenge, uid);
+      }
+      
+      // Load leaderboards
+      loadLeaderboards();
+      
+      // Setup tab switching
+      setupTabs();
+    });
+
+    async function loadCorrectAnswers() {
+      try {
+        const snapshot = await db.collection('answers').get();
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          correctAnswers[data.challengeId] = data.correctAnswer;
+        });
+        console.log('Correct answers loaded:', correctAnswers);
+      } catch (error) {
+        console.error('Error loading correct answers:', error);
+        // Fallback to default answers if Firestore fails
+        correctAnswers = {
+          challenge1: 'you are winner',
+          challenge2: 'open123',
+          challenge3: 'أحمر',
+          challenge4: 'final challenge'
+        };
+      }
+    }
+
+    async function initializeChallenge(challenge, uid) {
+      const submitBtn = document.getElementById(challenge.submitBtn);
+      const nameInput = document.getElementById(challenge.nameInput);
+      const answerInput = document.getElementById(challenge.answerInput);
+      const statusEl = document.getElementById(challenge.status);
+      
+      // Check if user already solved
+      try {
+        const hasSolved = await hasSolvedBefore(challenge.id, uid);
+        if (hasSolved) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'تم الحل ✓';
+          submitBtn.classList.add('success-btn');
+          statusEl.textContent = 'مكتمل';
+          statusEl.className = 'challenge-status status-completed';
+        }
+      } catch (error) {
+        console.error('Error checking solved status:', error);
+      }
+
+      submitBtn.addEventListener('click', async () => {
+        const name = nameInput.value.trim();
+        const answer = answerInput.value.trim().toLowerCase();
+
+        if (!name) {
+          showAlert('warning', 'بيانات ناقصة', 'من فضلك أدخل اسمك');
+          nameInput.focus();
+          return;
+        }
+
+        if (!answer) {
+          showAlert('warning', 'بيانات ناقصة', 'من فضلك أدخل الإجابة');
+          answerInput.focus();
+          return;
+        }
+
+        // Disable button during processing
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري التحقق...';
+
+        try {
+          // Check again if solved (in case of multiple tabs)
+          if (await hasSolvedBefore(challenge.id, uid)) {
+            showAlert('warning', 'تم الحل مسبقاً', 'لقد حللت هذا التحدي بالفعل، لا يمكنك المحاولة مرة أخرى.');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'تم الحل ✓';
+            submitBtn.classList.add('success-btn');
+            statusEl.textContent = 'مكتمل';
+            statusEl.className = 'challenge-status status-completed';
+            return;
+          }
+
+          const isCorrect = answer === correctAnswers[challenge.id];
+          const result = await saveSubmission(name, uid, answer, isCorrect, challenge.id);
+
+          if (isCorrect) {
+            showAlert('success', 'مبروك! 🎉', 'إجابتك صحيحة ✅');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'تم الحل ✓';
+            submitBtn.classList.add('success-btn');
+            statusEl.textContent = 'مكتمل';
+            statusEl.className = 'challenge-status status-completed';
+            
+            // Reload leaderboards after successful submission
+            setTimeout(() => {
+              loadLeaderboards();
+            }, 1500);
+          } else {
+            if (result.reason === 'already_solved') {
+              showAlert('warning', 'تم الحل مسبقاً', 'لقد حللت هذا التحدي بالفعل!');
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'تم الحل ✓';
+              submitBtn.classList.add('success-btn');
+              statusEl.textContent = 'مكتمل';
+              statusEl.className = 'challenge-status status-completed';
+            } else {
+              showAlert('error', 'إجابة خاطئة', 'عذراً، الإجابة غير صحيحة. حاول مرة أخرى.');
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'إرسال الإجابة';
+            }
+          }
+
+          answerInput.value = '';
+        } catch (error) {
+          console.error('Error in submission handler:', error);
+          showAlert('error', 'خطأ في النظام', 'حدث خطأ، حاول مرة أخرى.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'إرسال الإجابة';
+        }
+      });
+
+      // Allow Enter key to submit
+      answerInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          submitBtn.click();
+        }
+      });
+    }
+
+    async function hasSolvedBefore(challengeId, uid) {
+      try {
+        const doc = await db.collection('submissions').doc(`${challengeId}_${uid}`).get();
+        return doc.exists && doc.data().correct === true;
+      } catch (error) {
+        console.error('Error checking submission:', error);
+        return false;
+      }
+    }
+
+    async function saveSubmission(name, uid, answer, correct, challengeId) {
+      const docRef = db.collection('submissions').doc(`${challengeId}_${uid}`);
+
+      try {
+        const doc = await docRef.get();
+
+        // Prevent duplicate correct submissions
+        if (doc.exists && doc.data().correct === true) {
+          return { success: false, reason: 'already_solved' };
+        }
+
+        // Save submission
+        await docRef.set({
+          name,
+          uid,
+          answer,
+          correct,
+          challengeId,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        console.log('Submission saved:', { name, correct, challengeId });
+
+        // Add to leaderboard if correct and first time
+        if (correct && (!doc.exists || doc.data().correct !== true)) {
+          console.log('Adding to leaderboard...');
+          await db.collection('leaderboard').add({
+            name,
+            challengeId,
+            solvedAt: firebase.firestore.FieldValue.serverTimestamp(),
+            uid: uid
+          });
+          console.log('Added to leaderboard');
+          return { success: true, addedToLeaderboard: true };
+        }
+
+        return { success: true, addedToLeaderboard: false };
+      } catch (error) {
+        console.error('Error saving submission:', error);
+        return { success: false, reason: 'error', error: error.message };
+      }
+    }
+
+    async function loadLeaderboards() {
+      try {
+        // Load all leaderboards
+        const snapshot = await db.collection('leaderboard')
+          .orderBy('solvedAt', 'asc')
+          .limit(100)
+          .get();
+
+        console.log('Raw leaderboard data:', snapshot.size, 'entries');
+        
+        // Organize data by challenge
+        const leaderboardData = {
+          all: [],
+          challenge1: [],
+          challenge2: [],
+          challenge3: [],
+          challenge4: []
+        };
+        
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          leaderboardData.all.push(data);
+          
+          if (data.challengeId && leaderboardData[data.challengeId]) {
+            leaderboardData[data.challengeId].push(data);
+          }
+        });
+        
+        // Render each leaderboard
+        for (const [key, data] of Object.entries(leaderboardData)) {
+          renderLeaderboard(key, data);
+        }
+        
+      } catch (err) {
+        console.error("Error loading leaderboard:", err);
+        // Show error in all leaderboards
+        for (const key of ['all', 'challenge1', 'challenge2', 'challenge3', 'challenge4']) {
+          const list = document.getElementById(`leaderboard${key.charAt(0).toUpperCase() + key.slice(1)}`);
+          if (list) {
+            if (err.message.includes('index')) {
+              list.innerHTML = '<li class="empty-leaderboard">جاري تجهيز النظام... سيتم تحميل القائمة قريباً</li>';
+            } else {
+              list.innerHTML = '<li class="empty-leaderboard">خطأ في تحميل القائمة</li>';
+            }
+          }
+        }
+      }
+    }
+
+    function renderLeaderboard(type, data) {
+      const list = document.getElementById(`leaderboard${type.charAt(0).toUpperCase() + type.slice(1)}`);
+      if (!list) return;
+      
+      list.innerHTML = '';
+      
+      if (data.length === 0) {
+        list.innerHTML = '<li class="empty-leaderboard">لا يوجد متسابقين حتى الآن</li>';
+        return;
+      }
+      
+      if (type === 'all') {
+        // For "All" tab - show completion list without numbers
+        data.forEach((entry, index) => {
+          const li = document.createElement('li');
+          li.className = 'completion-item';
+          
+          // Convert challenge ID to readable name
+          let challengeName = '';
+          switch(entry.challengeId) {
+            case 'challenge1': challengeName = 'شفره القيصر'; break;
+            case 'challenge2': challengeName = 'لعبة الخدش'; break;
+            case 'challenge3': challengeName = 'حادثه سرقه ...!!'; break;
+            case 'challenge4': challengeName = 'شفرة مزدوجة'; break;
+            default: challengeName = entry.challengeId;
+          }
+          
+          li.innerHTML = `
+            <div class="player-name">${entry.name}</div>
+            <div class="player-stats"> قام ب  حل    {${challengeName} }</div>
+          `;
+          
+          list.appendChild(li);
+        });
+      } else {
+        // For individual challenge tabs - show ordered list with numbers
+        data.forEach((entry, index) => {
+          const li = document.createElement('li');
+          li.className = 'leaderboard-item';
+          
+          const rank = document.createElement('div');
+          rank.className = `rank ${index < 3 ? `rank-${index+1}` : ''}`;
+          rank.textContent = index + 1;
+          
+          const playerInfo = document.createElement('div');
+          playerInfo.className = 'player-info';
+          
+          const playerName = document.createElement('div');
+          playerName.className = 'player-name';
+          playerName.textContent = entry.name;
+          
+          playerInfo.appendChild(playerName);
+          
+          li.appendChild(rank);
+          li.appendChild(playerInfo);
+          
+          list.appendChild(li);
+        });
+      }
+    }
+
+    function setupTabs() {
+      const tabs = document.querySelectorAll('.tab');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          
+          // Add active class to clicked tab
+          tab.classList.add('active');
+          
+          // Hide all leaderboards
+          document.querySelectorAll('.leaderboard-list').forEach(list => {
+            list.style.display = 'none';
+          });
+          
+          // Show selected leaderboard
+          const tabName = tab.getAttribute('data-tab');
+          const leaderboardId = `leaderboard${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`;
+          document.getElementById(leaderboardId).style.display = 'block';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
